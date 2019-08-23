@@ -17,8 +17,25 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    sides = [a, b, c]
+    uniq = set(sides)
+
+    if min(uniq) <= 0:
+      raise TriangleError
+
+    for side in sides:
+      temp = sides[:]
+      temp.remove(side)
+      if side >= sum(temp):
+        raise TriangleError
+
+    if len(uniq) == 1:
+      return 'equilateral'
+
+    if len(uniq) == 2:
+      return 'isosceles'
+
+    return 'scalene'
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
